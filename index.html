@@ -3,208 +3,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Profesional & Interaktif</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Sysadmin & DevOps Portfolio | Online</title>
+    <!-- Tailwind CSS (Play CDN v4) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Alpine.js untuk Interaktivitas Ringan -->
+    <!-- Alpine.js for interactive UI states -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Font Awesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: JetBrains Mono for Code, Space Grotesk for Headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        .float-animation { animation: float 3s ease-in-out infinite; }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Grid background lines effect */
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+        .pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
     </style>
 </head>
-<body x-data="{ darkMode: true, activeFilter: 'all' }" :class="darkMode ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-900'" class="transition-colors duration-300 font-sans">
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 overflow-x-hidden cyber-grid">
 
-    <!-- NAVBAR -->
-    <nav class="sticky top-0 z-50 backdrop-blur-md bg-opacity-80 border-b border-slate-700/50 p-4 transition-colors duration-300" :class="darkMode ? 'bg-slate-900/80' : 'bg-white/80'">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider text-cyan-500">NAMA<span class="text-indigo-500">ANDA.</span></a>
-            <div class="flex items-center space-x-6">
-                <a href="#about" class="hover:text-cyan-400 transition">Tentang</a>
-                <a href="#projects" class="hover:text-cyan-400 transition">Proyek</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Kontak</a>
-                <!-- Dark Mode Toggle -->
-                <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-slate-800 text-yellow-400 focus:outline-none hover:scale-110 transition transform">
-                    <i :class="darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon text-slate-600'"></i>
-                </button>
+    <!-- TOP HEADER / STATUS BAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-emerald-500/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="flex h-3 w-3 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <a href="#" class="font-display font-bold text-lg tracking-wider text-slate-100">
+                    SYSADMIN<span class="text-emerald-400 font-mono">[~]#</span>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-emerald-400 transition-colors">/tentang</a>
+                <a href="#monitor" class="hover:text-emerald-400 transition-colors">/pemantauan</a>
+                <a href="#skills" class="hover:text-emerald-400 transition-colors">/keahlian</a>
+                <a href="#projects" class="hover:text-emerald-400 transition-colors">/infrastruktur</a>
+                <a href="#blog" class="hover:text-emerald-400 transition-colors">/medium_blog</a>
+                <a href="#contact" class="hover:text-emerald-400 transition-colors">/kontak</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <a href="https://linkedin.com/in/username" target="_blank" class="p-2 text-slate-400 hover:text-emerald-400 transition-colors text-lg" title="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/username" target="_blank" class="p-2 text-slate-400 hover:text-emerald-400 transition-colors text-lg" title="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="#contact" class="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-lg text-xs font-mono transition-all">
+                    ssh root@portfolio
+                </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
-        <!-- Background Ornaments -->
-        <div class="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -top-10 -left-10 float-animation"></div>
-        <div class="absolute w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10 float-animation" style="animation-delay: 1.5s;"></div>
+    <!-- HERO SECTION with Profile & Interactive Terminal -->
+    <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-12 items-center relative">
+        <!-- Ambient light source -->
+        <div class="absolute w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] top-1/4 -left-64 pointer-events-none pulse-slow"></div>
+        <div class="absolute w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] bottom-1/4 -right-32 pointer-events-none pulse-slow" style="animation-delay: 2s;"></div>
 
-        <div class="text-center z-10">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4">
-                Halo, Saya <span class="bg-gradient-to-r from-cyan-400 to-indigo-500 bg-clip-text text-transparent">Nama Anda</span>
-            </h1>
-            <!-- Dynamic Typing Text -->
-            <p class="text-xl md:text-2xl text-slate-400 mb-8 h-8" x-data="{ 
-                words: ['Web Developer', 'UI/UX Designer', 'Tech Enthusiast'], 
-                currentWord: '', 
-                wordIndex: 0, 
-                charIndex: 0, 
-                isDeleting: false,
-                type() {
-                    let current = this.words[this.wordIndex];
-                    if (this.isDeleting) {
-                        this.currentWord = current.substring(0, this.charIndex - 1);
-                        this.charIndex--;
-                    } else {
-                        this.currentWord = current.substring(0, this.charIndex + 1);
-                        this.charIndex++;
-                    }
-                    
-                    let typeSpeed = 100;
-                    if (this.isDeleting) { typeSpeed /= 2; }
-                    
-                    if (!this.isDeleting && this.charIndex === current.length) {
-                        typeSpeed = 2000; // Diam sebentar setelah selesai mengetik
-                        this.isDeleting = true;
-                    } else if (this.isDeleting && this.charIndex === 0) {
-                        this.isDeleting = false;
-                        this.wordIndex = (this.wordIndex + 1) % this.words.length;
-                        typeSpeed = 500;
-                    }
-                    setTimeout(() => this.type(), typeSpeed);
-                }
-            }" x-init="type()">
-                <span x-text="currentWord"></span><span class="animate-pulse">|</span>
-            </p>
-            <a href="#projects" class="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-cyan-500/30 transition transform hover:-translate-y-1">Lihat Karya Saya</a>
+        <!-- Left side: Profile Info -->
+        <div class="md:col-span-5 space-y-6">
+            <!-- Profile Photo Container (Server-chassis style border) -->
+            <div class="relative w-44 h-44 mx-auto md:mx-0 group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-cyan-400 rounded-2xl opacity-30 blur-md group-hover:opacity-50 transition duration-500"></div>
+                <div class="relative w-full h-full bg-slate-900 border-2 border-emerald-500/30 rounded-2xl overflow-hidden p-2">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/8042741607054571920_0" alt="Profile Photo" class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition duration-500">
+                    <!-- Status indicator overlay -->
+                    <div class="absolute bottom-3 right-3 bg-slate-950/80 px-2 py-0.5 rounded-full border border-emerald-500/50 flex items-center space-x-1">
+                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                        <span class="text-[9px] font-mono text-emerald-400 font-bold">ONLINE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-center md:text-left">
+                <p class="text-emerald-400 font-mono text-sm tracking-wider uppercase">// System Administrator</p>
+                <h1 class="text-4xl md:text-5xl font-display font-bold text-slate-100 tracking-tight">
+                    M. Rizal <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Arifin</span>
+                </h1>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    Mengoptimalkan keandalan sistem, otomatisasi infrastruktur cloud, dan memastikan uptime server 99.99%. Menjembatani kode developer dengan lingkungan produksi yang aman dan efisien.
+                </p>
+            </div>
+
+            <!-- Fast links buttons -->
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-slate-950 font-bold text-sm rounded-lg transition transform active:scale-95 shadow-lg shadow-emerald-500/10">
+                    <i class="fa-solid fa-paper-plane mr-2"></i>Hubungi Saya
+                </a>
+                <a href="https://medium.com/@username" target="_blank" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium text-sm rounded-lg transition flex items-center gap-2">
+                    <i class="fa-brands fa-medium"></i> Medium Blog
+                </a>
+            </div>
+        </div>
+
+        <!-- Right side: CLI Interactive Terminal Component -->
+        <div class="md:col-span-7" x-data="terminalHandler()">
+            <div class="w-full bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-emerald-950/20">
+                <!-- Terminal Window Bar -->
+                <div class="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-slate-800/80">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-emerald-500"></i> visitor@rizal-sysadm: ~
+                    </span>
+                    <span class="text-xs font-mono text-emerald-500/60 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-900/40">v2.4-stable</span>
+                </div>
+                <!-- Terminal Body -->
+                <div class="p-5 font-mono text-xs md:text-sm h-80 overflow-y-auto space-y-3 scroll-smooth" id="terminal-screen" x-ref="terminalScreen">
+                    <div>
+                        <p class="text-slate-500">System initialization complete. Welcome, visitor!</p>
+                        <p class="text-emerald-400">Ketik <span class="text-white font-bold bg-slate-900 px-1.5 py-0.5 rounded">help</span> untuk melihat daftar perintah yang didukung.</p>
+                    </div>
+
+                    <!-- Dynamic Output History -->
+                    <template x-for="item in history">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-emerald-500">visitor@sysadm:~$</span>
+                                <span class="text-slate-200" x-text="item.cmd"></span>
+                            </div>
+                            <div class="text-slate-400 whitespace-pre-wrap leading-relaxed pl-4 border-l border-emerald-900/30" x-html="item.output"></div>
+                        </div>
+                    </template>
+
+                    <!-- Active Typing Line -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-emerald-500">visitor@sysadm:~$</span>
+                        <input 
+                            type="text" 
+                            x-model="inputCmd" 
+                            @keydown.enter="submitCommand"
+                            class="bg-transparent text-slate-200 focus:outline-none flex-grow font-mono caret-emerald-400"
+                            placeholder="Ketik command..."
+                            autofocus
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- REAL-TIME SYSTEM MONITOR SECTION -->
+    <section id="monitor" class="py-16 border-t border-slate-900 bg-slate-950/50" x-data="systemMonitor()">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                <div>
+                    <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Prometheus & Grafana Metrics</span>
+                    <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Pemantauan Metrik Infrastruktur</h2>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2 font-mono text-xs flex items-center gap-3">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span class="text-slate-400">Koneksi Agen: <span class="text-emerald-400 font-bold">AKTIF</span></span>
+                </div>
+            </div>
+
+            <!-- Metric Cards Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- CPU Usage -->
+                <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
+                    <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">CPU Utilization</p>
+                    <div class="flex items-baseline space-x-2 mt-4">
+                        <span class="text-4xl font-display font-bold text-slate-100" x-text="cpu + '%'">52%</span>
+                        <span class="text-emerald-500 text-xs font-mono flex items-center"><i class="fa-solid fa-circle-nodes mr-1 animate-pulse"></i> Normal</span>
+                    </div>
+                    <!-- Indicator bar -->
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full mt-5 overflow-hidden">
+                        <div class="bg-gradient-to-r from-emerald-500 to-cyan-500 h-full rounded-full transition-all duration-1000" :style="'width: ' + cpu + '%'"></div>
+                    </div>
+                </div>
+
+                <!-- Memory Usage -->
+                <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
+                    <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">RAM Usage</p>
+                    <div class="flex items-baseline space-x-2 mt-4">
+                        <span class="text-4xl font-display font-bold text-slate-100" x-text="ram + '%'">61%</span>
+                        <span class="text-slate-500 text-xs font-mono">4.8GB / 8GB</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full mt-5 overflow-hidden">
+                        <div class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full rounded-full transition-all duration-1000" :style="'width: ' + ram + '%'"></div>
+                    </div>
+                </div>
+
+                <!-- Server Uptime -->
+                <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
+                    <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">Server Uptime</p>
+                    <div class="flex items-baseline space-x-2 mt-4">
+                        <span class="text-4xl font-display font-bold text-slate-100">99.99<span class="text-emerald-400 text-2xl">%</span></span>
+                    </div>
+                    <p class="text-xs font-mono text-emerald-400/80 mt-6"><i class="fa-solid fa-clock-rotate-left mr-1"></i> 365 Days Uninterrupted</p>
+                </div>
+
+                <!-- Incidents Resolved -->
+                <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
+                    <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">SLA Incident Resolved</p>
+                    <div class="flex items-baseline space-x-2 mt-4">
+                        <span class="text-4xl font-display font-bold text-slate-100">100<span class="text-emerald-400 text-2xl">%</span></span>
+                        <span class="text-emerald-500 text-xs font-mono"><i class="fa-solid fa-shield-halved mr-1"></i> Secured</span>
+                    </div>
+                    <p class="text-xs font-mono text-slate-500 mt-6"><i class="fa-solid fa-circle-check mr-1 text-emerald-500"></i> No Critical Down Time</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ABOUT & SKILLS -->
-    <section id="about" class="py-20 max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-12 text-center">Tentang Saya</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-4 text-slate-400">
-                <p>Saya adalah seorang profesional yang berfokus pada pembuatan pengalaman digital yang bermakna, interaktif, dan mudah digunakan. Berbekal kombinasi desain dan kode, saya suka mewujudkan ide menjadi kenyataan.</p>
-                <p>Selalu terbuka untuk mempelajari teknologi baru demi meningkatkan efisiensi dan kualitas produk yang saya kembangkan.</p>
+    <!-- CORE SKILLS SECTION -->
+    <section id="skills" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat Otomatisasi</h2>
+            <p class="text-slate-400 text-sm mt-3">Beberapa teknologi utama yang saya gunakan sehari-hari untuk mendesain, meluncurkan, dan mengamankan server produksi berskala besar.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Cloud & Virtualization Card -->
+            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Cloud & Virtualization</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Mendesain arsitektur cloud terdistribusi yang aman, hemat biaya, dan siap menghadapi beban traffic besar.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">AWS (EC2, S3, RDS)</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Docker</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Kubernetes</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Proxmox / KVM</span>
+                </div>
             </div>
-            <!-- Interactive Skills Display -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-cyan-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
-                    <i class="fa-brands fa-html5 text-orange-500 text-3xl mb-2"></i>
-                    <h3 class="font-bold">Frontend Dev</h3>
-                    <p class="text-xs text-slate-400">HTML, CSS, JS, Tailwind</p>
+
+            <!-- Automation & CI/CD Card -->
+            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-6">
+                    <i class="fa-solid fa-gears"></i>
                 </div>
-                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-indigo-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
-                    <i class="fa-brands fa-node-js text-green-500 text-3xl mb-2"></i>
-                    <h3 class="font-bold">Backend Dev</h3>
-                    <p class="text-xs text-slate-400">Node.js, Express, REST API</p>
+                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Infrastructure as Code</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Otomatisasi instalasi dan replikasi lingkungan produksi terstandarisasi untuk meniadakan error konfigurasi manual.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Terraform</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Ansible</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">GitLab CI/CD</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Bash / Python</span>
                 </div>
-                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-purple-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
-                    <i class="fa-solid fa-palette text-purple-500 text-3xl mb-2"></i>
-                    <h3 class="font-bold">UI/UX Design</h3>
-                    <p class="text-xs text-slate-400">Figma, Wireframing</p>
+            </div>
+
+            <!-- Monitoring & Linux Admin Card -->
+            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6">
+                    <i class="fa-solid fa-sliders"></i>
                 </div>
-                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-pink-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
-                    <i class="fa-solid fa-layer-group text-pink-500 text-3xl mb-2"></i>
-                    <h3 class="font-bold">Database</h3>
-                    <p class="text-xs text-slate-400">MySQL, MongoDB</p>
+                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">OS & Telemetry Logs</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Pencatatan logs menyeluruh dan visualisasi kinerja cluster guna mengantisipasi kegagalan sistem sebelum pengguna merasakannya.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Rocky Linux / Ubuntu</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Prometheus</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Grafana</span>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Nginx / HAProxy</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO PROJECTS -->
-    <section id="projects" class="py-20 bg-slate-800/10 backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-6 text-center">Proyek Pilihan</h2>
-            
-            <!-- Filter Buttons -->
-            <div class="flex justify-center space-x-4 mb-12">
-                <button @click="activeFilter = 'all'" :class="activeFilter === 'all' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Semua</button>
-                <button @click="activeFilter = 'web'" :class="activeFilter === 'web' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Web App</button>
-                <button @click="activeFilter = 'design'" :class="activeFilter === 'design' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Desain</button>
+    <!-- INFRASTRUCTURE PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-slate-900/10 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Deployment Catalog</span>
+                <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Arsitektur & Otomatisasi Terkini</h2>
             </div>
 
-            <!-- Grid Proyek -->
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div x-show="activeFilter === 'all' || activeFilter === 'web'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-cyan-500/5 transition duration-300">
-                    <div class="h-48 bg-slate-700 relative overflow-hidden">
-                        <!-- Placeholder gambar / ganti dengan tag img asli nanti -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-indigo-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
-                            <i class="fa-solid fa-code text-4xl text-white/50"></i>
+            <!-- Projects Grid Layout -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project Card 1: High Availability Kubernetes -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-2.5 py-1 bg-cyan-950/40 text-cyan-400 border border-cyan-900/50 rounded text-xs font-mono">Setup Produksi</span>
+                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
+                            <i class="fa-solid fa-network-wired"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Web App</span>
-                        <h3 class="text-xl font-bold mt-2 mb-2">E-Commerce Platform</h3>
-                        <p class="text-sm text-slate-400 mb-4">Aplikasi toko online responsif dengan sistem pembayaran terintegrasi.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">React / Node</span>
-                            <a href="#" class="text-sm text-cyan-400 hover:underline">Demo <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
-                        </div>
+                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">High Availability K8s Cluster on AWS</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Membangun infrastruktur Kubernetes multi-node dengan sistem auto-scaling, load balancing via HAProxy, serta integrasi pemantauan Prometheus untuk mendukung layanan microservice e-commerce klien.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">EKS</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Terraform</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Helm</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Grafana</span>
                     </div>
+                    <a href="https://github.com/username/ha-k8s-aws" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                    </a>
                 </div>
 
-                <!-- Project Card 2 -->
-                <div x-show="activeFilter === 'all' || activeFilter === 'design'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-indigo-500/5 transition duration-300">
-                    <div class="h-48 bg-slate-700 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
-                            <i class="fa-solid fa-compass-drafting text-4xl text-white/50"></i>
+                <!-- Project Card 2: Ansible Server Hardening -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-2.5 py-1 bg-emerald-950/40 text-emerald-400 border border-emerald-900/50 rounded text-xs font-mono">Otomatisasi Script</span>
+                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Desain</span>
-                        <h3 class="text-xl font-bold mt-2 mb-2">Redesign Dashboard</h3>
-                        <p class="text-sm text-slate-400 mb-4">Konsep UI/UX Dashboard Analytics modern dengan fokus pada kegunaan.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">Figma / UI Design</span>
-                            <a href="#" class="text-sm text-indigo-400 hover:underline">Studi Kasus <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
-                        </div>
+                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Automated Server Hardening Script</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Playbook Ansible untuk melakukan pengamanan (hardening) server Linux baru sesuai standar CIS Benchmark. Melakukan konfigurasi SSH yang aman, setup UFW Firewall otomatis, dan instalasi Fail2Ban.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ansible</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ubuntu Server</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Bash Scripting</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">UFW</span>
                     </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div x-show="activeFilter === 'all' || activeFilter === 'web'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-cyan-500/5 transition duration-300">
-                    <div class="h-48 bg-slate-700 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 to-cyan-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
-                            <i class="fa-solid fa-cloud text-4xl text-white/50"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Web App</span>
-                        <h3 class="text-xl font-bold mt-2 mb-2">SaaS Weather App</h3>
-                        <p class="text-sm text-slate-400 mb-4">Aplikasi cuaca real-time memanfaatkan visualisasi grafik interaktif.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">Vue / Tailwind</span>
-                            <a href="#" class="text-sm text-emerald-400 hover:underline">Demo <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
-                        </div>
-                    </div>
+                    <a href="https://github.com/username/ansible-hardening" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                    </a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- MEDIUM BLOG SECTION -->
+    <section id="blog" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+            <div>
+                <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Knowledge Sharing & Articles</span>
+                <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Publikasi Blog di Medium</h2>
+            </div>
+            <a href="https://medium.com/@username" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors font-mono text-sm flex items-center gap-2">
+                Lihat semua artikel <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Article Card 1 -->
+            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> May 2026</span>
+                            <span>•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                            Panduan Membangun Multi-node Kubernetes Cluster Secara Lokal dengan K3s
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
+                            Mengupas tuntas langkah-langkah efisien menyiapkan kluster Kubernetes berdaya rendah menggunakan K3s untuk pengujian aplikasi yang aman dan minim sumber daya.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
+                        <span class="text-xs font-mono text-emerald-400">#DevOps #K8s</span>
+                        <a href="https://medium.com/@username/art-link-1" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
+                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article Card 2 -->
+            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> Mar 2026</span>
+                            <span>•</span>
+                            <span>8 min read</span>
+                        </div>
+                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                            Otomatisasi Backup Database PostgreSQL Menggunakan Bash Script dan AWS S3
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
+                            Metode otomatis melakukan backup terjadwal (cron job) database penting dan memindahkannya ke AWS S3 bucket dengan retention policy yang rapi.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
+                        <span class="text-xs font-mono text-emerald-400">#Sysadmin #Database</span>
+                        <a href="https://medium.com/@username/art-link-2" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
+                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article Card 3 -->
+            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> Jan 2026</span>
+                            <span>•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                            Memahami Konsep Reverse Proxy Menggunakan Nginx: Kasus Nyata
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
+                            Bagaimana cara menyembunyikan arsitektur internal server Anda, mengimplementasikan enkripsi SSL/TLS, dan menyalurkan request client dengan benar melalui Nginx.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
+                        <span class="text-xs font-mono text-emerald-400">#Nginx #Networking</span>
+                        <a href="https://medium.com/@username/art-link-3" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
+                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-20 max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Mari Bekerja Sama</h2>
-        <p class="text-slate-400 mb-8 max-w-lg mx-auto">Punya proyek menarik atau sekadar ingin menyapa? Hubungi saya lewat salah satu platform di bawah ini!</p>
-        
-        <div class="flex justify-center space-x-6">
-            <a href="mailto:emailanda@gmail.com" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-cyan-400 hover:bg-cyan-500 hover:text-white transition transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://linkedin.com/in/username" target="_blank" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-blue-400 hover:bg-blue-500 hover:text-white transition transform hover:-translate-y-1"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/username" target="_blank" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-slate-300 hover:bg-slate-700 hover:text-white transition transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
+    <section id="contact" class="py-20 bg-slate-900/10 border-t border-slate-900">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Connection Handshake</span>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Mulailah Kolaborasi Infrastruktur</h2>
+            <p class="text-slate-400 text-sm mt-3 mb-10 max-w-lg mx-auto">
+                Tertarik membangun sistem yang andal dan aman dari serangan? Mari diskusikan detail teknis sistem Anda.
+            </p>
+
+            <!-- Social Media Contact Links -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
+                <a href="mailto:emailanda@gmail.com" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
+                    <i class="fa-solid fa-envelope text-2xl text-slate-400 group-hover:text-emerald-400 transition-colors"></i>
+                    <span class="text-xs font-mono text-slate-300">Kirim Email</span>
+                </a>
+                <a href="https://linkedin.com/in/username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
+                    <i class="fa-brands fa-linkedin-in text-2xl text-slate-400 group-hover:text-cyan-400 transition-colors"></i>
+                    <span class="text-xs font-mono text-slate-300">LinkedIn</span>
+                </a>
+                <a href="https://medium.com/@username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
+                    <i class="fa-brands fa-medium text-2xl text-slate-400 group-hover:text-emerald-400 transition-colors"></i>
+                    <span class="text-xs font-mono text-slate-300">Medium</span>
+                </a>
+                <a href="https://github.com/username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
+                    <i class="fa-brands fa-github text-2xl text-slate-400 group-hover:text-indigo-400 transition-colors"></i>
+                    <span class="text-xs font-mono text-slate-300">GitHub</span>
+                </a>
+            </div>
+
+            <!-- Terminal status box -->
+            <div class="inline-block bg-slate-950 border border-slate-800/80 px-4 py-2.5 rounded-lg font-mono text-xs text-slate-500">
+                <i class="fa-solid fa-key mr-2 text-emerald-500"></i> PGP ID: <span class="text-slate-300 font-bold">0x8F92D73C</span>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
-        <p>&copy; 2026 Nama Anda. Dibuat dengan Tailwind CSS & Alpine.js.</p>
+    <footer class="py-8 text-center text-xs text-slate-600 border-t border-slate-900 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 M. Rizal Arifin. Semua sistem terpantau normal.</p>
+            <p class="font-mono text-[11px] text-emerald-500/70">
+                Designed with <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i>. Loaded in 14ms.
+            </p>
+        </div>
     </footer>
 
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Real-time server diagnostics logic
+        function systemMonitor() {
+            return {
+                cpu: 45,
+                ram: 58,
+                init() {
+                    setInterval(() => {
+                        // SImulate minor server resource oscillations
+                        this.cpu = Math.floor(Math.random() * (62 - 38 + 1)) + 38;
+                        this.ram = Math.floor(Math.random() * (64 - 56 + 1)) + 56;
+                    }, 4000);
+                }
+            }
+        }
+
+        // Terminal CLI Input/Output emulator logic
+        function terminalHandler() {
+            return {
+                inputCmd: '',
+                history: [
+                    { 
+                        cmd: 'whoami', 
+                        output: 'M. Rizal Arifin - Professional System Administrator.\nSpesialisasi: Keamanan Server Linux, Monitoring, Otomatisasi Cloud.' 
+                    }
+                ],
+                submitCommand() {
+                    let cmdText = this.inputCmd.trim().toLowerCase();
+                    if (cmdText === '') return;
+
+                    let response = '';
+
+                    switch(cmdText) {
+                        case 'help':
+                            response = `Daftar perintah yang didukung:\n` +
+                                       `  <span class="text-emerald-400">about</span>      - Menampilkan informasi ringkas profil saya.\n` +
+                                       `  <span class="text-emerald-400">skills</span>     - List teknologi yang saya kuasai.\n` +
+                                       `  <span class="text-emerald-400">projects</span>   - Menampilkan sorotan infrastruktur yang sukses dideploy.\n` +
+                                       `  <span class="text-emerald-400">contact</span>    - Informasi kontak, LinkedIn, dan PGP Key.\n` +
+                                       `  <span class="text-emerald-400">clear</span>      - Membersihkan riwayat terminal.`;
+                            break;
+                        case 'about':
+                            response = `Saya adalah System Administrator berpengalaman yang berfokus pada:\n` +
+                                       `- High-Availability, redundansi sistem tingkat tinggi, dan disaster recovery.\n` +
+                                       `- Hardening sistem operasi Linux (Rocky/Debian) dari celah keamanan.\n` +
+                                       `- Otomatisasi setup infrastruktur cloud untuk menghemat waktu deployment developer.`;
+                            break;
+                        case 'skills':
+                            response = `<span class="text-cyan-400 font-bold">Cloud & Container:</span> AWS, GCP, Docker, Kubernetes, Proxmox\n` +
+                                       `<span class="text-emerald-400 font-bold">Otomatisasi:</span> Terraform, Ansible, Gitlab-CI, Bash Scripting\n` +
+                                       `<span class="text-purple-400 font-bold">Web Server & DB:</span> Nginx, Apache, HAProxy, PostgreSQL, MySQL`;
+                            break;
+                        case 'projects':
+                            response = `1. <span class="text-emerald-400 font-bold">High Availability K8s Cluster (AWS):</span> Multi-node deployment, autoscaling.\n` +
+                                       `2. <span class="text-emerald-400 font-bold">Ansible Server Hardening Script:</span> Mempersingkat waktu setup server aman hingga 90%.\n` +
+                                       `Lihat detail lebih lengkap pada bagian <span class="text-white font-bold">/infrastruktur</span> di bawah!`;
+                            break;
+                        case 'contact':
+                            response = `LinkedIn: <a href="https://linkedin.com/in/username" target="_blank" class="text-cyan-400 underline">linkedin.com/in/username</a>\n` +
+                                       `Medium Blog: <a href="https://medium.com/@username" target="_blank" class="text-emerald-400 underline">medium.com/@username</a>\n` +
+                                       `Email: emailanda@gmail.com\n` +
+                                       `PGP Fingerprint: 4F2C F972 CE8B 1D90 0x8F92D73C`;
+                            break;
+                        case 'clear':
+                            this.history = [];
+                            this.inputCmd = '';
+                            return;
+                        default:
+                            response = `<span class="text-rose-500">Error: command not found: ${cmdText}.</span> Ketik 'help' untuk daftar perintah.`;
+                    }
+
+                    this.history.push({
+                        cmd: cmdText,
+                        output: response
+                    });
+
+                    this.inputCmd = '';
+
+                    // Scroll to bottom of terminal screen on next tick
+                    this.$nextTick(() => {
+                        let screen = this.$refs.terminalScreen;
+                        screen.scrollTop = screen.scrollHeight;
+                    });
+                }
+            }
+        }
+    </script>
 </body>
 </html>
+```eof
+
+### 🛠️ Langkah Menayangkan di GitHub:
+1. Simpan kode di atas ke dalam sebuah file bernama `index.html` di komputer Anda.
+2. Buat repositori baru di GitHub dengan nama bebas (misal: `portfolio`).
+3. Upload file `index.html` tersebut langsung ke dalam repositori.
+4. Pergi ke menu **Settings** -> **Pages** di dalam repositori Anda.
+5. Pada bagian **Build and deployment**, atur Source ke **Deploy from a branch**, lalu pilih branch `main` (atau `master`) dan folder `/ (root)`. Klik **Save**.
+6. Website portofolio interaktif Anda akan segera online dalam 1-2 menit!
+
+Anda bisa memodifikasi nama, mengganti tautan portofolio ke alamat LinkedIn & Medium Anda sendiri, serta menambahkan gambar profil lain sesuai keinginan!
