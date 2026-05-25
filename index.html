@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional & Interaktif</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Alpine.js untuk Interaktivitas Ringan -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+    </style>
+</head>
+<body x-data="{ darkMode: true, activeFilter: 'all' }" :class="darkMode ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-900'" class="transition-colors duration-300 font-sans">
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-opacity-80 border-b border-slate-700/50 p-4 transition-colors duration-300" :class="darkMode ? 'bg-slate-900/80' : 'bg-white/80'">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-wider text-cyan-500">NAMA<span class="text-indigo-500">ANDA.</span></a>
+            <div class="flex items-center space-x-6">
+                <a href="#about" class="hover:text-cyan-400 transition">Tentang</a>
+                <a href="#projects" class="hover:text-cyan-400 transition">Proyek</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Kontak</a>
+                <!-- Dark Mode Toggle -->
+                <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-slate-800 text-yellow-400 focus:outline-none hover:scale-110 transition transform">
+                    <i :class="darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon text-slate-600'"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
+        <!-- Background Ornaments -->
+        <div class="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -top-10 -left-10 float-animation"></div>
+        <div class="absolute w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10 float-animation" style="animation-delay: 1.5s;"></div>
+
+        <div class="text-center z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4">
+                Halo, Saya <span class="bg-gradient-to-r from-cyan-400 to-indigo-500 bg-clip-text text-transparent">Nama Anda</span>
+            </h1>
+            <!-- Dynamic Typing Text -->
+            <p class="text-xl md:text-2xl text-slate-400 mb-8 h-8" x-data="{ 
+                words: ['Web Developer', 'UI/UX Designer', 'Tech Enthusiast'], 
+                currentWord: '', 
+                wordIndex: 0, 
+                charIndex: 0, 
+                isDeleting: false,
+                type() {
+                    let current = this.words[this.wordIndex];
+                    if (this.isDeleting) {
+                        this.currentWord = current.substring(0, this.charIndex - 1);
+                        this.charIndex--;
+                    } else {
+                        this.currentWord = current.substring(0, this.charIndex + 1);
+                        this.charIndex++;
+                    }
+                    
+                    let typeSpeed = 100;
+                    if (this.isDeleting) { typeSpeed /= 2; }
+                    
+                    if (!this.isDeleting && this.charIndex === current.length) {
+                        typeSpeed = 2000; // Diam sebentar setelah selesai mengetik
+                        this.isDeleting = true;
+                    } else if (this.isDeleting && this.charIndex === 0) {
+                        this.isDeleting = false;
+                        this.wordIndex = (this.wordIndex + 1) % this.words.length;
+                        typeSpeed = 500;
+                    }
+                    setTimeout(() => this.type(), typeSpeed);
+                }
+            }" x-init="type()">
+                <span x-text="currentWord"></span><span class="animate-pulse">|</span>
+            </p>
+            <a href="#projects" class="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-cyan-500/30 transition transform hover:-translate-y-1">Lihat Karya Saya</a>
+        </div>
+    </section>
+
+    <!-- ABOUT & SKILLS -->
+    <section id="about" class="py-20 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-12 text-center">Tentang Saya</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-4 text-slate-400">
+                <p>Saya adalah seorang profesional yang berfokus pada pembuatan pengalaman digital yang bermakna, interaktif, dan mudah digunakan. Berbekal kombinasi desain dan kode, saya suka mewujudkan ide menjadi kenyataan.</p>
+                <p>Selalu terbuka untuk mempelajari teknologi baru demi meningkatkan efisiensi dan kualitas produk yang saya kembangkan.</p>
+            </div>
+            <!-- Interactive Skills Display -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-cyan-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
+                    <i class="fa-brands fa-html5 text-orange-500 text-3xl mb-2"></i>
+                    <h3 class="font-bold">Frontend Dev</h3>
+                    <p class="text-xs text-slate-400">HTML, CSS, JS, Tailwind</p>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-indigo-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
+                    <i class="fa-brands fa-node-js text-green-500 text-3xl mb-2"></i>
+                    <h3 class="font-bold">Backend Dev</h3>
+                    <p class="text-xs text-slate-400">Node.js, Express, REST API</p>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-purple-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
+                    <i class="fa-solid fa-palette text-purple-500 text-3xl mb-2"></i>
+                    <h3 class="font-bold">UI/UX Design</h3>
+                    <p class="text-xs text-slate-400">Figma, Wireframing</p>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-700/50 hover:border-pink-500 transition transform hover:-translate-y-1 bg-slate-800/20 backdrop-blur-sm">
+                    <i class="fa-solid fa-layer-group text-pink-500 text-3xl mb-2"></i>
+                    <h3 class="font-bold">Database</h3>
+                    <p class="text-xs text-slate-400">MySQL, MongoDB</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO PROJECTS -->
+    <section id="projects" class="py-20 bg-slate-800/10 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6 text-center">Proyek Pilihan</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex justify-center space-x-4 mb-12">
+                <button @click="activeFilter = 'all'" :class="activeFilter === 'all' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Semua</button>
+                <button @click="activeFilter = 'web'" :class="activeFilter === 'web' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Web App</button>
+                <button @click="activeFilter = 'design'" :class="activeFilter === 'design' ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400'" class="px-4 py-2 rounded-full transition text-sm font-medium">Desain</button>
+            </div>
+
+            <!-- Grid Proyek -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div x-show="activeFilter === 'all' || activeFilter === 'web'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-cyan-500/5 transition duration-300">
+                    <div class="h-48 bg-slate-700 relative overflow-hidden">
+                        <!-- Placeholder gambar / ganti dengan tag img asli nanti -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-indigo-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
+                            <i class="fa-solid fa-code text-4xl text-white/50"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Web App</span>
+                        <h3 class="text-xl font-bold mt-2 mb-2">E-Commerce Platform</h3>
+                        <p class="text-sm text-slate-400 mb-4">Aplikasi toko online responsif dengan sistem pembayaran terintegrasi.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">React / Node</span>
+                            <a href="#" class="text-sm text-cyan-400 hover:underline">Demo <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div x-show="activeFilter === 'all' || activeFilter === 'design'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-indigo-500/5 transition duration-300">
+                    <div class="h-48 bg-slate-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
+                            <i class="fa-solid fa-compass-drafting text-4xl text-white/50"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Desain</span>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Redesign Dashboard</h3>
+                        <p class="text-sm text-slate-400 mb-4">Konsep UI/UX Dashboard Analytics modern dengan fokus pada kegunaan.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">Figma / UI Design</span>
+                            <a href="#" class="text-sm text-indigo-400 hover:underline">Studi Kasus <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div x-show="activeFilter === 'all' || activeFilter === 'web'" x-transition class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/30 group hover:shadow-xl hover:shadow-cyan-500/5 transition duration-300">
+                    <div class="h-48 bg-slate-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 to-cyan-800 opacity-80 group-hover:scale-110 transition duration-500 flex items-center justify-center">
+                            <i class="fa-solid fa-cloud text-4xl text-white/50"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Web App</span>
+                        <h3 class="text-xl font-bold mt-2 mb-2">SaaS Weather App</h3>
+                        <p class="text-sm text-slate-400 mb-4">Aplikasi cuaca real-time memanfaatkan visualisasi grafik interaktif.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">Vue / Tailwind</span>
+                            <a href="#" class="text-sm text-emerald-400 hover:underline">Demo <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Mari Bekerja Sama</h2>
+        <p class="text-slate-400 mb-8 max-w-lg mx-auto">Punya proyek menarik atau sekadar ingin menyapa? Hubungi saya lewat salah satu platform di bawah ini!</p>
+        
+        <div class="flex justify-center space-x-6">
+            <a href="mailto:emailanda@gmail.com" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-cyan-400 hover:bg-cyan-500 hover:text-white transition transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/username" target="_blank" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-blue-400 hover:bg-blue-500 hover:text-white transition transform hover:-translate-y-1"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/username" target="_blank" class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-xl text-slate-300 hover:bg-slate-700 hover:text-white transition transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+        <p>&copy; 2026 Nama Anda. Dibuat dengan Tailwind CSS & Alpine.js.</p>
+    </footer>
+
+</body>
+</html>
