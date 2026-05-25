@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>www.zakaria.web.id | Online</title>
-    <!-- Tailwind CSS (Play CDN v4) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Alpine.js for interactive UI states -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: JetBrains Mono for Code, Space Grotesk for Headings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,7 +53,6 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 overflow-x-hidden cyber-grid">
 
-    <!-- TOP HEADER / STATUS BAR -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-emerald-500/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -89,20 +84,15 @@
         </div>
     </header>
 
-    <!-- HERO SECTION with Profile & Interactive Terminal -->
     <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-12 items-center relative">
-        <!-- Ambient light source -->
         <div class="absolute w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] top-1/4 -left-64 pointer-events-none pulse-slow"></div>
         <div class="absolute w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] bottom-1/4 -right-32 pointer-events-none pulse-slow" style="animation-delay: 2s;"></div>
 
-        <!-- Left side: Profile Info -->
         <div class="md:col-span-5 space-y-6">
-            <!-- Profile Photo Container (Server-chassis style border) -->
             <div class="relative w-44 h-44 mx-auto md:mx-0 group">
                 <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-cyan-400 rounded-2xl opacity-30 blur-md group-hover:opacity-50 transition duration-500"></div>
                 <div class="relative w-full h-full bg-slate-900 border-2 border-emerald-500/30 rounded-2xl overflow-hidden p-2">
                     <img src="profile.png" alt="Profile Photo" class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition duration-500">
-                    <!-- Status indicator overlay -->
                     <div class="absolute bottom-3 right-3 bg-slate-950/80 px-2 py-0.5 rounded-full border border-emerald-500/50 flex items-center space-x-1">
                         <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
                         <span class="text-[9px] font-mono text-emerald-400 font-bold">ONLINE</span>
@@ -120,21 +110,18 @@
                 </p>
             </div>
 
-            <!-- Fast links buttons -->
             <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                 <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-slate-950 font-bold text-sm rounded-lg transition transform active:scale-95 shadow-lg shadow-emerald-500/10">
                     <i class="fa-solid fa-paper-plane mr-2"></i>Hubungi Saya
                 </a>
-                <a href="https://medium.com/@username" target="_blank" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium text-sm rounded-lg transition flex items-center gap-2">
+                <a href="https://zakariaramadan.medium.com/" target="_blank" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium text-sm rounded-lg transition flex items-center gap-2">
                     <i class="fa-brands fa-medium"></i> Medium Blog
                 </a>
             </div>
         </div>
 
-        <!-- Right side: CLI Interactive Terminal Component -->
         <div class="md:col-span-7" x-data="terminalHandler()">
             <div class="w-full bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-emerald-950/20">
-                <!-- Terminal Window Bar -->
                 <div class="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-slate-800/80">
                     <div class="flex space-x-2">
                         <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
@@ -146,14 +133,12 @@
                     </span>
                     <span class="text-xs font-mono text-emerald-500/60 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-900/40">v2.4-stable</span>
                 </div>
-                <!-- Terminal Body -->
                 <div class="p-5 font-mono text-xs md:text-sm h-80 overflow-y-auto space-y-3 scroll-smooth" id="terminal-screen" x-ref="terminalScreen">
                     <div>
                         <p class="text-slate-500">System initialization complete. Welcome, visitor!</p>
-                        <p class="text-emerald-400">Ketik <span class="text-white font-bold bg-slate-900 px-1.5 py-0.5 rounded">help</span> untuk melihat daftar perintah yang didukung.</p>
+                        <p class="text-emerald-400">Ketik <span class="text-white font-bold bg-slate-900 px-1.5 py-0.5 rounded">help</span> untuk melihat daftar perintah.</p>
                     </div>
 
-                    <!-- Dynamic Output History -->
                     <template x-for="item in history">
                         <div class="space-y-1">
                             <div class="flex items-center space-x-2">
@@ -164,7 +149,6 @@
                         </div>
                     </template>
 
-                    <!-- Active Typing Line -->
                     <div class="flex items-center space-x-2">
                         <span class="text-emerald-500">visitor@www.zakaria.web.id:~$</span>
                         <input 
@@ -173,7 +157,6 @@
                             @keydown.enter="submitCommand"
                             class="bg-transparent text-slate-200 focus:outline-none flex-grow font-mono caret-emerald-400"
                             placeholder="Ketik command..."
-                            autofocus
                         >
                     </div>
                 </div>
@@ -181,7 +164,6 @@
         </div>
     </main>
 
-    <!-- REAL-TIME SYSTEM MONITOR SECTION -->
     <section id="monitor" class="py-16 border-t border-slate-900 bg-slate-950/50" x-data="systemMonitor()">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
@@ -195,22 +177,18 @@
                 </div>
             </div>
 
-            <!-- Metric Cards Grid -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- CPU Usage -->
                 <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
                     <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">CPU Utilization</p>
                     <div class="flex items-baseline space-x-2 mt-4">
                         <span class="text-4xl font-display font-bold text-slate-100" x-text="cpu + '%'">52%</span>
                         <span class="text-emerald-500 text-xs font-mono flex items-center"><i class="fa-solid fa-circle-nodes mr-1 animate-pulse"></i> Normal</span>
                     </div>
-                    <!-- Indicator bar -->
                     <div class="w-full bg-slate-800 h-1.5 rounded-full mt-5 overflow-hidden">
                         <div class="bg-gradient-to-r from-emerald-500 to-cyan-500 h-full rounded-full transition-all duration-1000" :style="'width: ' + cpu + '%'"></div>
                     </div>
                 </div>
 
-                <!-- Memory Usage -->
                 <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
                     <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">RAM Usage</p>
                     <div class="flex items-baseline space-x-2 mt-4">
@@ -222,7 +200,6 @@
                     </div>
                 </div>
 
-                <!-- Server Uptime -->
                 <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
                     <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">Server Uptime</p>
                     <div class="flex items-baseline space-x-2 mt-4">
@@ -231,7 +208,6 @@
                     <p class="text-xs font-mono text-emerald-400/80 mt-6"><i class="fa-solid fa-clock-rotate-left mr-1"></i> 365 Days Uninterrupted</p>
                 </div>
 
-                <!-- Incidents Resolved -->
                 <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/20 transition-all duration-300">
                     <p class="font-mono text-xs text-slate-400 uppercase tracking-wider">SLA Incident Resolved</p>
                     <div class="flex items-baseline space-x-2 mt-4">
@@ -244,345 +220,7 @@
         </div>
     </section>
 
-    <!-- CORE SKILLS SECTION -->
     <section id="skills" class="py-20 max-w-6xl mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat Otomatisasi</h2>
-            <p class="text-slate-400 text-sm mt-3">Beberapa teknologi utama yang saya gunakan sehari-hari untuk mendesain, meluncurkan, dan mengamankan server produksi berskala besar.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Cloud & Virtualization Card -->
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6">
-                    <i class="fa-solid fa-cloud"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Cloud & Virtualization</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Mendesain arsitektur cloud terdistribusi yang aman, hemat biaya, dan siap menghadapi beban traffic besar.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">AWS (EC2, S3, RDS)</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Docker</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Kubernetes</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Proxmox / KVM</span>
-                </div>
-            </div>
-
-            <!-- Automation & CI/CD Card -->
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-6">
-                    <i class="fa-solid fa-gears"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Infrastructure as Code</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Otomatisasi instalasi dan replikasi lingkungan produksi terstandarisasi untuk meniadakan error konfigurasi manual.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Terraform</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Ansible</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">GitLab CI/CD</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Bash / Python</span>
-                </div>
-            </div>
-
-            <!-- Monitoring & Linux Admin Card -->
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6">
-                    <i class="fa-solid fa-sliders"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">OS & Telemetry Logs</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Pencatatan logs menyeluruh dan visualisasi kinerja cluster guna mengantisipasi kegagalan sistem sebelum pengguna merasakannya.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Rocky Linux / Ubuntu</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Prometheus</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Grafana</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Nginx / HAProxy</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INFRASTRUCTURE PROJECTS SECTION -->
-    <section id="projects" class="py-20 bg-slate-900/10 border-t border-slate-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-16">
-                <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Deployment Catalog</span>
-                <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Arsitektur & Otomatisasi Terkini</h2>
-            </div>
-
-            <!-- Projects Grid Layout -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project Card 1: High Availability Kubernetes -->
-                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="px-2.5 py-1 bg-cyan-950/40 text-cyan-400 border border-cyan-900/50 rounded text-xs font-mono">Setup Produksi</span>
-                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
-                            <i class="fa-solid fa-network-wired"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">High Availability K8s Cluster on AWS</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Membangun infrastruktur Kubernetes multi-node dengan sistem auto-scaling, load balancing via HAProxy, serta integrasi pemantauan Prometheus untuk mendukung layanan microservice e-commerce klien.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">EKS</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Terraform</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Helm</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Grafana</span>
-                    </div>
-                    <a href="https://github.com/username/ha-k8s-aws" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
-                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Project Card 2: Ansible Server Hardening -->
-                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="px-2.5 py-1 bg-emerald-950/40 text-emerald-400 border border-emerald-900/50 rounded text-xs font-mono">Otomatisasi Script</span>
-                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Automated Server Hardening Script</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Playbook Ansible untuk melakukan pengamanan (hardening) server Linux baru sesuai standar CIS Benchmark. Melakukan konfigurasi SSH yang aman, setup UFW Firewall otomatis, dan instalasi Fail2Ban.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ansible</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ubuntu Server</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Bash Scripting</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">UFW</span>
-                    </div>
-                    <a href="https://github.com/username/ansible-hardening" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
-                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MEDIUM BLOG SECTION -->
-    <section id="blog" class="py-20 max-w-6xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
-            <div>
-                <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Knowledge Sharing & Articles</span>
-                <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Publikasi Blog di Medium</h2>
-            </div>
-            <a href="https://medium.com/@username" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors font-mono text-sm flex items-center gap-2">
-                Lihat semua artikel <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Article Card 1 -->
-            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
-                <div class="p-6 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> May 2026</span>
-                            <span>•</span>
-                            <span>5 min read</span>
-                        </div>
-                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
-                            Panduan Membangun Multi-node Kubernetes Cluster Secara Lokal dengan K3s
-                        </h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
-                            Mengupas tuntas langkah-langkah efisien menyiapkan kluster Kubernetes berdaya rendah menggunakan K3s untuk pengujian aplikasi yang aman dan minim sumber daya.
-                        </p>
-                    </div>
-                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
-                        <span class="text-xs font-mono text-emerald-400">#DevOps #K8s</span>
-                        <a href="https://medium.com/@username/art-link-1" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
-                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article Card 2 -->
-            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
-                <div class="p-6 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> Mar 2026</span>
-                            <span>•</span>
-                            <span>8 min read</span>
-                        </div>
-                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
-                            Otomatisasi Backup Database PostgreSQL Menggunakan Bash Script dan AWS S3
-                        </h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
-                            Metode otomatis melakukan backup terjadwal (cron job) database penting dan memindahkannya ke AWS S3 bucket dengan retention policy yang rapi.
-                        </p>
-                    </div>
-                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
-                        <span class="text-xs font-mono text-emerald-400">#www.zakaria.web.idin #Database</span>
-                        <a href="https://medium.com/@username/art-link-2" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
-                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article Card 3 -->
-            <article class="bg-slate-900/30 border border-slate-800/80 rounded-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-300 flex flex-col h-full">
-                <div class="p-6 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono mb-4">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> Jan 2026</span>
-                            <span>•</span>
-                            <span>6 min read</span>
-                        </div>
-                        <h3 class="text-lg font-display font-bold text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-2">
-                            Memahami Konsep Reverse Proxy Menggunakan Nginx: Kasus Nyata
-                        </h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mt-3 line-clamp-3">
-                            Bagaimana cara menyembunyikan arsitektur internal server Anda, mengimplementasikan enkripsi SSL/TLS, dan menyalurkan request client dengan benar melalui Nginx.
-                        </p>
-                    </div>
-                    <div class="border-t border-slate-800/80 pt-4 mt-6 flex justify-between items-center">
-                        <span class="text-xs font-mono text-emerald-400">#Nginx #Networking</span>
-                        <a href="https://medium.com/@username/art-link-3" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-mono">
-                            Baca Artikel <i class="fa-solid fa-square-arrow-up-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-20 bg-slate-900/10 border-t border-slate-900">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Connection Handshake</span>
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Mulailah Kolaborasi Infrastruktur</h2>
-            <p class="text-slate-400 text-sm mt-3 mb-10 max-w-lg mx-auto">
-                Tertarik membangun sistem yang andal dan aman dari serangan? Mari diskusikan detail teknis sistem Anda.
-            </p>
-
-            <!-- Social Media Contact Links -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
-                <a href="mailto:emailanda@gmail.com" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
-                    <i class="fa-solid fa-envelope text-2xl text-slate-400 group-hover:text-emerald-400 transition-colors"></i>
-                    <span class="text-xs font-mono text-slate-300">Kirim Email</span>
-                </a>
-                <a href="https://linkedin.com/in/username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
-                    <i class="fa-brands fa-linkedin-in text-2xl text-slate-400 group-hover:text-cyan-400 transition-colors"></i>
-                    <span class="text-xs font-mono text-slate-300">LinkedIn</span>
-                </a>
-                <a href="https://medium.com/@username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
-                    <i class="fa-brands fa-medium text-2xl text-slate-400 group-hover:text-emerald-400 transition-colors"></i>
-                    <span class="text-xs font-mono text-slate-300">Medium</span>
-                </a>
-                <a href="https://github.com/username" target="_blank" class="p-4 bg-slate-950 border border-slate-800 rounded-xl hover:border-emerald-500/30 transition-all flex flex-col items-center gap-2 group">
-                    <i class="fa-brands fa-github text-2xl text-slate-400 group-hover:text-indigo-400 transition-colors"></i>
-                    <span class="text-xs font-mono text-slate-300">GitHub</span>
-                </a>
-            </div>
-
-            <!-- Terminal status box -->
-            <div class="inline-block bg-slate-950 border border-slate-800/80 px-4 py-2.5 rounded-lg font-mono text-xs text-slate-500">
-                <i class="fa-solid fa-key mr-2 text-emerald-500"></i> PGP ID: <span class="text-slate-300 font-bold">0x8F92D73C</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-8 text-center text-xs text-slate-600 border-t border-slate-900 bg-slate-950">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Zakaria Ramadan. Semua sistem terpantau normal.</p>
-            <p class="font-mono text-[11px] text-emerald-500/70">
-                Designed with <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i>. Loaded in 14ms.
-            </p>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE SCRIPTS -->
-    <script>
-        // Real-time server diagnostics logic
-        function systemMonitor() {
-            return {
-                cpu: 45,
-                ram: 58,
-                init() {
-                    setInterval(() => {
-                        // SImulate minor server resource oscillations
-                        this.cpu = Math.floor(Math.random() * (62 - 38 + 1)) + 38;
-                        this.ram = Math.floor(Math.random() * (64 - 56 + 1)) + 56;
-                    }, 4000);
-                }
-            }
-        }
-
-        // Terminal CLI Input/Output emulator logic
-        function terminalHandler() {
-            return {
-                inputCmd: '',
-                history: [
-                    { 
-                        cmd: 'whoami', 
-                        output: 'Zakaria Ramadan - Professional System Administrator.\nSpesialisasi: Keamanan Server Linux, Monitoring, Otomatisasi Cloud.' 
-                    }
-                ],
-                submitCommand() {
-                    let cmdText = this.inputCmd.trim().toLowerCase();
-                    if (cmdText === '') return;
-
-                    let response = '';
-
-                    switch(cmdText) {
-                        case 'help':
-                            response = `Daftar perintah yang didukung:\n` +
-                                       `  <span class="text-emerald-400">about</span>      - Menampilkan informasi ringkas profil saya.\n` +
-                                       `  <span class="text-emerald-400">skills</span>     - List teknologi yang saya kuasai.\n` +
-                                       `  <span class="text-emerald-400">projects</span>   - Menampilkan sorotan infrastruktur yang sukses dideploy.\n` +
-                                       `  <span class="text-emerald-400">contact</span>    - Informasi kontak, LinkedIn, dan PGP Key.\n` +
-                                       `  <span class="text-emerald-400">clear</span>      - Membersihkan riwayat terminal.`;
-                            break;
-                        case 'about':
-                            response = `Saya adalah System Administrator berpengalaman yang berfokus pada:\n` +
-                                       `- High-Availability, redundansi sistem tingkat tinggi, dan disaster recovery.\n` +
-                                       `- Hardening sistem operasi Linux (Rocky/Debian) dari celah keamanan.\n` +
-                                       `- Otomatisasi setup infrastruktur cloud untuk menghemat waktu deployment developer.`;
-                            break;
-                        case 'skills':
-                            response = `<span class="text-cyan-400 font-bold">Cloud & Container:</span> AWS, GCP, Docker, Kubernetes, Proxmox\n` +
-                                       `<span class="text-emerald-400 font-bold">Otomatisasi:</span> Terraform, Ansible, Gitlab-CI, Bash Scripting\n` +
-                                       `<span class="text-purple-400 font-bold">Web Server & DB:</span> Nginx, Apache, HAProxy, PostgreSQL, MySQL`;
-                            break;
-                        case 'projects':
-                            response = `1. <span class="text-emerald-400 font-bold">High Availability K8s Cluster (AWS):</span> Multi-node deployment, autoscaling.\n` +
-                                       `2. <span class="text-emerald-400 font-bold">Ansible Server Hardening Script:</span> Mempersingkat waktu setup server aman hingga 90%.\n` +
-                                       `Lihat detail lebih lengkap pada bagian <span class="text-white font-bold">/infrastruktur</span> di bawah!`;
-                            break;
-                        case 'contact':
-                            response = `LinkedIn: <a href="https://linkedin.com/in/username" target="_blank" class="text-cyan-400 underline">linkedin.com/in/username</a>\n` +
-                                       `Medium Blog: <a href="https://medium.com/@username" target="_blank" class="text-emerald-400 underline">medium.com/@username</a>\n` +
-                                       `Email: emailanda@gmail.com\n` +
-                                       `PGP Fingerprint: 4F2C F972 CE8B 1D90 0x8F92D73C`;
-                            break;
-                        case 'clear':
-                            this.history = [];
-                            this.inputCmd = '';
-                            return;
-                        default:
-                            response = `<span class="text-rose-500">Error: command not found: ${cmdText}.</span> Ketik 'help' untuk daftar perintah.`;
-                    }
-
-                    this.history.push({
-                        cmd: cmdText,
-                        output: response
-                    });
-
-                    this.inputCmd = '';
-
-                    // Scroll to bottom of terminal screen on next tick
-                    this.$nextTick(() => {
-                        let screen = this.$refs.terminalScreen;
-                        screen.scrollTop = screen.scrollHeight;
-                    });
-                }
-            }
-        }
-    </script>
-</body>
-</html>
-```eof
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat
