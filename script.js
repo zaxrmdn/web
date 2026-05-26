@@ -1,25 +1,3 @@
-function weatherWidget() {
-    return {
-        time: '',
-        weather: 'Fetching...',
-        init() {
-            // Update Jam
-            setInterval(() => {
-                this.time = new Date().toLocaleTimeString('id-ID', { 
-                    timeZone: 'Asia/Jakarta', 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit' 
-                }) + ' WIB';
-            }, 1000);
-
-            // Simulasi data cuaca (karena penggunaan API membutuhkan key)
-            // Anda bisa menggantinya dengan fetch() ke OpenWeather API nanti
-            this.weather = 'Jakarta: 31°C, Clear';
-        }
-    }
-}
-
 // ==========================================
 // GLOBAL STATE & CORE LOGIC (Maintenance & Audit)
 // ==========================================
