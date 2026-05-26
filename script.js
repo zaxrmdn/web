@@ -26,9 +26,50 @@ function terminalHandler() {
                     this.history = [];
                     this.inputCmd = '';
                     return;
+// --- EASTER EGG RM COMMAND ---
+                case 'rm':
+                    output = `<span class="text-yellow-400">rm: missing operand. Coba jalankan <span class="font-bold text-rose-500">rm -rf /</span> kalau Anda berani 😈</span>`;
+                    break;
+                case 'rm -rf /':
+                case 'sudo rm -rf /':
+                    output = `<span class="text-rose-500 font-bold animate-pulse">[CRITICAL WARNING] Menghapus sistem root... Good bye!</span>`;
+                    
+                    // Efek Animasi Menghilang (Website rontok)
+                    setTimeout(() => {
+                        document.body.style.transition = "all 2s ease-in-out";
+                        document.body.style.transform = "scale(0.01) rotate(15deg) translateY(500px)";
+                        document.body.style.opacity = "0";
+                        document.body.style.backgroundColor = "#9f1239"; // Warna merah error
+                        
+                        // Kembalikan seperti semula setelah hilang
+                        setTimeout(() => {
+                            alert("System Halted.\n\nSemua data (pura-puranya) berhasil dihapus! 💀\nRebooting system...");
+                            
+                            // Reset style CSS
+                            document.body.style.transition = "all 1s ease-in-out";
+                            document.body.style.transform = "scale(1) rotate(0deg) translateY(0)";
+                            document.body.style.opacity = "1";
+                            document.body.style.backgroundColor = ""; 
+                            
+                            // Bersihkan terminal setelah "reboot"
+                            this.history = [{ 
+                                cmd: 'reboot', 
+                                output: '<span class="text-emerald-400">System successfully recovered. Welcome back! Tolong jangan dihapus lagi ya 🙏</span>' 
+                            }];
+                            
+                            // Auto scroll ke bawah
+                            this.$nextTick(() => {
+                                const screen = this.$refs.terminalScreen;
+                                screen.scrollTop = screen.scrollHeight;
+                            });
+                        }, 2500);
+                    }, 1000);
+                    break;
+                // -----------------------------
                 default:
                     output = `bash: command not found: \`${cmd}\`. Ketik <span class="text-emerald-400">help</span> untuk bantuan opsi command.`;
             }
+            
 
             this.history.push({ cmd: this.inputCmd, output: output });
             this.inputCmd = '';
