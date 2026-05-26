@@ -50,9 +50,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const logTextElement = document.getElementById("live-audit-text");
     if (logTextElement) {
         setInterval(() => {
-            // Ambil waktu sekarang secara dinamis
+            // Mengambil waktu lokal mesin secara presisi (YYYY-MM-DD HH:MM:SS)
             const now = new Date();
-            const timestamp = now.toISOString().replace('T', ' ').substring(0, 19);
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timestamp = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
             
             // Pilih log acak dari array
             const randomLog = auditLogs[Math.floor(Math.random() * auditLogs.length)];
@@ -62,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 4500); // Berganti otomatis setiap 4.5 detik
     }
 });
+
 // ==========================================
 // ALPINE.JS COMPONENTS LOGIC (Terminal & Monitor)
 // ==========================================
@@ -90,15 +97,15 @@ function terminalHandler() {
                     this.history = [];
                     this.inputCmd = '';
                     return;
-// --- EASTER EGG RM COMMAND ---
+
+                // --- EASTER EGG RM COMMAND ---
                 case 'rm':
                     output = `<span class="text-yellow-400">rm: missing operation. Coba jalankan <span class="font-bold text-rose-500">rm -rf /</span> kalau Anda berani 😈</span>`;
                     break;
                 case 'rm -rf /':
                 case 'sudo rm -rf /':
                     output = `<span class="text-rose-500 font-bold animate-pulse">[CRITICAL WARNING] Menghapus sistem root... Good bye!</span>`;
-                case 'reboot':
-                    output = `<span class="text-rose-500 font-bold animate-pulse">Rebooting System!</span>`;
+                    
                     // Efek Animasi Menghilang (Website rontok)
                     setTimeout(() => {
                         document.body.style.transition = "all 2s ease-in-out";
@@ -125,16 +132,20 @@ function terminalHandler() {
                             // Auto scroll ke bawah
                             this.$nextTick(() => {
                                 const screen = this.$refs.terminalScreen;
-                                screen.scrollTop = screen.scrollHeight;
+                                if (screen) screen.scrollTop = screen.scrollHeight;
                             });
                         }, 2500);
                     }, 1000);
+                    break; // <-- DISINI SEBELUMNYA RETAK (SUDAH DIPERBAIKI AGAR TIDAK BOCOR KE CASE REBOOT)
+
+                case 'reboot':
+                    output = `<span class="text-rose-500 font-bold animate-pulse">Rebooting System!</span>`;
                     break;
+
                 // -----------------------------
                 default:
                     output = `bash: command not found: \`${cmd}\`. Ketik <span class="text-emerald-400">help</span> untuk bantuan opsi command.`;
             }
-            
 
             this.history.push({ cmd: this.inputCmd, output: output });
             this.inputCmd = '';
@@ -142,7 +153,7 @@ function terminalHandler() {
             // Auto scroll terminal ke posisi paling bawah
             this.$nextTick(() => {
                 const screen = this.$refs.terminalScreen;
-                screen.scrollTop = screen.scrollHeight;
+                if (screen) screen.scrollTop = screen.scrollHeight;
             });
         }
     }
@@ -185,15 +196,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const latestPosts = data.items.slice(0, 3);
 
                 latestPosts.forEach(post => {
-                    // Gunakan gambar bawaan artikel, atau fallback ke tema cyber/matrix gratis jika kosong
-                     // Bikin elemen bayangan untuk membedah isi artikel HTML dari Medium
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = post.description;
 
-                    // CARA CERDAS MENGAMBIL THUMBNAIL MEDIUM:
-                    // 1. Cek apakah ada post.thumbnail dari API
-                    // 2. Jika kosong, cari tag <img> pertama yang ada di dalam isi artikel
-                    // 3. Jika sama sekali tidak ada gambar, gunakan gambar cyber sebagai cadangan
+                    // Ambil thumbnail pintar
                     const firstImg = tempDiv.querySelector('img');
                     const thumbnail = post.thumbnail || (firstImg ? firstImg.src : 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600');
                     
