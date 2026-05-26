@@ -211,7 +211,7 @@
 <section id="skills" class="py-20 max-w-6xl mx-auto px-6" x-data="{ activeSlide: 1 }">
     <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
-        <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Daftar Keahlian Infrastruktur</h2>
+        <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Kategori Keahlian</h2>
     </div>
 
     <div class="relative overflow-hidden">
@@ -219,6 +219,7 @@
              :style="'transform: translateX(-' + (activeSlide - 1) * 100 + '%)'">
             
             <div class="w-full flex-shrink-0 px-4">
+                <h4 class="text-emerald-400 font-mono text-center mb-6 text-sm italic">01. System Administration & OS</h4>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="skill in ['Linux', 'Linux System Administration', 'Window Server', 'Mikrotik', 'DNS Server', 'Mail Server']">
                         <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-emerald-500/50 transition">
@@ -230,6 +231,7 @@
             </div>
 
             <div class="w-full flex-shrink-0 px-4">
+                <h4 class="text-blue-400 font-mono text-center mb-6 text-sm italic">02. Virtualization & Infrastructure</h4>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="skill in ['Virtualization', 'VMWare ESXi', 'Proxy', 'Reverse Proxy', 'Web Server', 'Database Server']">
                         <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-blue-500/50 transition">
@@ -241,6 +243,7 @@
             </div>
 
             <div class="w-full flex-shrink-0 px-4">
+                <h4 class="text-cyan-400 font-mono text-center mb-6 text-sm italic">03. DevOps & Containerization</h4>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="skill in ['DevOps', 'Docker', 'Kubernetes', 'Ansible', 'Shell Scripting', 'Jenkins']">
                         <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-cyan-500/50 transition">
@@ -252,6 +255,7 @@
             </div>
 
             <div class="w-full flex-shrink-0 px-4">
+                <h4 class="text-purple-400 font-mono text-center mb-6 text-sm italic">04. Version Control & Monitoring</h4>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="skill in ['Git', 'Github', 'Gitlab', 'Zabbix', 'Prometheus', 'Grafana', 'Sonarqube']">
                         <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-purple-500/50 transition">
