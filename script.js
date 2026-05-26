@@ -33,7 +33,7 @@ function terminalHandler() {
                 case 'rm -rf /':
                 case 'sudo rm -rf /':
                     output = `<span class="text-rose-500 font-bold animate-pulse">[CRITICAL WARNING] Menghapus sistem root... Good bye!</span>`;
-                    
+                case 'reboot':    
                     // Efek Animasi Menghilang (Website rontok)
                     setTimeout(() => {
                         document.body.style.transition = "all 2s ease-in-out";
@@ -43,7 +43,7 @@ function terminalHandler() {
                         
                         // Kembalikan seperti semula setelah hilang
                         setTimeout(() => {
-                            alert("err.404.\n\npage not found 💀\nRebooting system...");
+                            alert("Error.\n\n404 Page not Found :(\nPlease Wait");
                             
                             // Reset style CSS
                             document.body.style.transition = "all 1s ease-in-out";
