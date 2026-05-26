@@ -33,7 +33,8 @@ function terminalHandler() {
                 case 'rm -rf /':
                 case 'sudo rm -rf /':
                     output = `<span class="text-rose-500 font-bold animate-pulse">[CRITICAL WARNING] Menghapus sistem root... Good bye!</span>`;
-                case 'reboot':    
+                case 'reboot':
+                    output = `<span class="text-rose-500 font-bold animate-pulse">Rebooting System!</span>`;
                     // Efek Animasi Menghilang (Website rontok)
                     setTimeout(() => {
                         document.body.style.transition = "all 2s ease-in-out";
@@ -54,7 +55,7 @@ function terminalHandler() {
                             // Bersihkan terminal setelah "reboot"
                             this.history = [{ 
                                 cmd: 'reboot', 
-                                output: '<span class="text-emerald-400">System successfully recovered. Welcome back! Tolong jangan dihapus lagi ya 🙏</span>' 
+                                output: '<span class="text-emerald-400">Initial boot success!</span>' 
                             }];
                             
                             // Auto scroll ke bawah
@@ -121,16 +122,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 latestPosts.forEach(post => {
                     // Gunakan gambar bawaan artikel, atau fallback ke tema cyber/matrix gratis jika kosong
-                    const thumbnail = post.thumbnail || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600';
+                     // Bikin elemen bayangan untuk membedah isi artikel HTML dari Medium
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.description;
+
+                    // CARA CERDAS MENGAMBIL THUMBNAIL MEDIUM:
+                    // 1. Cek apakah ada post.thumbnail dari API
+                    // 2. Jika kosong, cari tag <img> pertama yang ada di dalam isi artikel
+                    // 3. Jika sama sekali tidak ada gambar, gunakan gambar cyber sebagai cadangan
+                    const firstImg = tempDiv.querySelector('img');
+                    const thumbnail = post.thumbnail || (firstImg ? firstImg.src : 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600');
                     
                     // Format Waktu Publikasi
                     const pubDate = new Date(post.pubDate).toLocaleDateString('id-ID', {
                         year: 'numeric', month: 'short', day: 'numeric'
                     });
 
-                    // Bersihkan tag HTML dari cuplikan konten tulisan
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = post.description;
+                    // Bersihkan sisa tag HTML agar cuma tersisa teks murni untuk cuplikan
                     const textContent = tempDiv.textContent || tempDiv.innerText || "";
                     const shortSnippet = textContent.substring(0, 115) + "...";
 
