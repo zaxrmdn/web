@@ -1,3 +1,33 @@
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+    const text = `Pesan baru dari Portofolio!\n\nNama: ${name}\nPesan: ${message}`;
+    
+    // GANTI DENGAN TOKEN DAN ID ANDA
+    const BOT_TOKEN = '8996687805:AAFIFesnXn7iT27XWAgzQk47Ue5W5trcsWc';
+    const CHAT_ID = '-5016210863';
+    
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+        });
+        
+        if (response.ok) {
+            alert('Pesan berhasil dikirim ke Telegram saya!');
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('Gagal mengirim pesan.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
 // ==========================================
 // GLOBAL STATE & CORE LOGIC (Maintenance & Audit)
 // ==========================================
