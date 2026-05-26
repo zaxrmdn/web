@@ -28,7 +28,7 @@ function terminalHandler() {
                     return;
 // --- EASTER EGG RM COMMAND ---
                 case 'rm':
-                    output = `<span class="text-yellow-400">rm: missing operand. Coba jalankan <span class="font-bold text-rose-500">rm -rf /</span> kalau Anda berani 😈</span>`;
+                    output = `<span class="text-yellow-400">rm: missing operation. Coba jalankan <span class="font-bold text-rose-500">rm -rf /</span> kalau Anda berani 😈</span>`;
                     break;
                 case 'rm -rf /':
                 case 'sudo rm -rf /':
@@ -43,7 +43,7 @@ function terminalHandler() {
                         
                         // Kembalikan seperti semula setelah hilang
                         setTimeout(() => {
-                            alert("System Halted.\n\nSemua data (pura-puranya) berhasil dihapus! 💀\nRebooting system...");
+                            alert("err.404.\n\npage not found 💀\nRebooting system...");
                             
                             // Reset style CSS
                             document.body.style.transition = "all 1s ease-in-out";
