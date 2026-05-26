@@ -16,7 +16,7 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 overflow-x-hidden cyber-grid">
+<body x-data="mainData()" class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 overflow-x-hidden cyber-grid">
 
     <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-emerald-500/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -53,6 +53,9 @@
             </div>
         </div>
     </header>
+        <div x-show="!isMaintenance" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0">
+    <!-- Semua isi website Anda (Hero, Terminal, Project, Blog) taruh di dalam sini -->
+        </div>
 
     <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-12 items-center relative">
         <div class="absolute w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] top-1/4 -left-64 pointer-events-none pulse-slow"></div>
@@ -91,7 +94,7 @@
             </div>
 
             <!-- TOMBOL SAKELAR MAINTENANCE MODE -->
-            <div class="flex items-center space-x-3 bg-slate-950/60 border border-slate-800 px-4 py-2 rounded-full font-mono text-xs" x-data="mainData()">
+            <div class="flex items-center space-x-3 bg-slate-950/60 border border-slate-800 px-4 py-2 rounded-full font-mono text-xs" >
                 <span class="text-slate-400">System Status:</span>
                 <button @click="toggleMaintenance()" class="relative inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                 :class="isMaintenance ? 'bg-rose-600' : 'bg-slate-700'">
@@ -439,9 +442,7 @@
             </div>
         </div>
     </section>
-    <div x-show="!isMaintenance" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0">
-    <!-- Semua isi website Anda (Hero, Terminal, Project, Blog) taruh di dalam sini -->
-    </div>
+
     <!-- LAYAR UTAMA MAINTENANCE MODE (DI TAMPILKAN JIKA isMaintenance = TRUE) -->
 <div x-show="isMaintenance" x-cloak class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 font-mono selection:bg-rose-500/30">
     <div class="p-8 max-w-lg bg-slate-950 border border-rose-950/50 rounded-2xl shadow-[0_0_50px_rgba(225,29,72,0.1)] relative overflow-hidden">
