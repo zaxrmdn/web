@@ -211,43 +211,68 @@
 <section id="skills" class="py-20 max-w-6xl mx-auto px-6" x-data="{ activeSlide: 1 }">
     <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
-        <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat Otomatisasi</h2>
+        <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Daftar Keahlian Infrastruktur</h2>
     </div>
 
     <div class="relative overflow-hidden">
         <div class="flex transition-transform duration-500 ease-out" 
-             :style="'transform: translateX(-' + (activeSlide - 1) * (100 / 1) + '%)'">
+             :style="'transform: translateX(-' + (activeSlide - 1) * 100 + '%)'">
             
-            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
-                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6"><i class="fa-solid fa-cloud"></i></div>
-                    <h3 class="text-xl font-bold text-slate-100 mb-4">Cloud & Virtualization</h3>
-                    <p class="text-slate-400 text-sm">Mendesain arsitektur cloud terdistribusi yang aman dan efisien.</p>
+            <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <template x-for="skill in ['Linux', 'Linux System Administration', 'Window Server', 'Mikrotik', 'DNS Server', 'Mail Server']">
+                        <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-emerald-500/50 transition">
+                            <i class="fa-solid fa-server text-emerald-400 text-2xl mb-3"></i>
+                            <h3 class="font-bold text-slate-200 text-sm" x-text="skill"></h3>
+                        </div>
+                    </template>
                 </div>
             </div>
 
-            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
-                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-6"><i class="fa-solid fa-gears"></i></div>
-                    <h3 class="text-xl font-bold text-slate-100 mb-4">Infrastructure as Code</h3>
-                    <p class="text-slate-400 text-sm">Otomatisasi instalasi untuk meniadakan error konfigurasi manual.</p>
+            <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <template x-for="skill in ['Virtualization', 'VMWare ESXi', 'Proxy', 'Reverse Proxy', 'Web Server', 'Database Server']">
+                        <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-blue-500/50 transition">
+                            <i class="fa-solid fa-network-wired text-blue-400 text-2xl mb-3"></i>
+                            <h3 class="font-bold text-slate-200 text-sm" x-text="skill"></h3>
+                        </div>
+                    </template>
                 </div>
             </div>
 
-            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
-                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6"><i class="fa-solid fa-sliders"></i></div>
-                    <h3 class="text-xl font-bold text-slate-100 mb-4">OS & Telemetry</h3>
-                    <p class="text-slate-400 text-sm">Pencatatan logs menyeluruh untuk mengantisipasi kegagalan sistem.</p>
+            <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <template x-for="skill in ['DevOps', 'Docker', 'Kubernetes', 'Ansible', 'Shell Scripting', 'Jenkins']">
+                        <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-cyan-500/50 transition">
+                            <i class="fa-solid fa-gears text-cyan-400 text-2xl mb-3"></i>
+                            <h3 class="font-bold text-slate-200 text-sm" x-text="skill"></h3>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="w-full flex-shrink-0 px-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <template x-for="skill in ['Git', 'Github', 'Gitlab', 'Zabbix', 'Prometheus', 'Grafana', 'Sonarqube']">
+                        <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-xl text-center hover:border-purple-500/50 transition">
+                            <i class="fa-solid fa-code-branch text-purple-400 text-2xl mb-3"></i>
+                            <h3 class="font-bold text-slate-200 text-sm" x-text="skill"></h3>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center mt-8 space-x-4">
-            <button @click="activeSlide = activeSlide === 1 ? 3 : activeSlide - 1" class="p-3 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition">
+        <div class="flex justify-center mt-10 space-x-6">
+            <button @click="activeSlide = activeSlide === 1 ? 4 : activeSlide - 1" class="w-12 h-12 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition flex items-center justify-center">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <button @click="activeSlide = activeSlide === 3 ? 1 : activeSlide + 1" class="p-3 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition">
+            <div class="flex items-center space-x-2">
+                <template x-for="i in 4">
+                    <div class="w-3 h-3 rounded-full transition-all" :class="activeSlide === i ? 'bg-emerald-500 w-6' : 'bg-slate-700'"></div>
+                </template>
+            </div>
+            <button @click="activeSlide = activeSlide === 4 ? 1 : activeSlide + 1" class="w-12 h-12 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition flex items-center justify-center">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
