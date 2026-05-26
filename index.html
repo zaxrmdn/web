@@ -208,57 +208,51 @@
         </div>
     </section>
 
-    <section id="skills" class="py-20 max-w-6xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat Otomatisasi</h2>
-            <p class="text-slate-400 text-sm mt-3">Beberapa teknologi utama yang saya gunakan sehari-hari untuk mendesain, meluncurkan, dan mengamankan server produksi berskala besar.</p>
-        </div>
+<section id="skills" class="py-20 max-w-6xl mx-auto px-6" x-data="{ activeSlide: 1 }">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Technical Competency Rack</span>
+        <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Infrastruktur & Alat Otomatisasi</h2>
+    </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6">
-                    <i class="fa-solid fa-cloud"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Cloud & Virtualization</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Mendesain arsitektur cloud terdistribusi yang aman, hemat biaya, dan siap menghadapi beban traffic besar.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">AWS (EC2, S3, RDS)</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Docker</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Kubernetes</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Proxmox / KVM</span>
+    <div class="relative overflow-hidden">
+        <div class="flex transition-transform duration-500 ease-out" 
+             :style="'transform: translateX(-' + (activeSlide - 1) * (100 / 1) + '%)'">
+            
+            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
+                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6"><i class="fa-solid fa-cloud"></i></div>
+                    <h3 class="text-xl font-bold text-slate-100 mb-4">Cloud & Virtualization</h3>
+                    <p class="text-slate-400 text-sm">Mendesain arsitektur cloud terdistribusi yang aman dan efisien.</p>
                 </div>
             </div>
 
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-6">
-                    <i class="fa-solid fa-gears"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">Infrastructure as Code</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Otomatisasi instalasi dan replikasi lingkungan produksi terstandarisasi untuk meniadakan error konfigurasi manual.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Terraform</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Ansible</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">GitLab CI/CD</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Bash / Python</span>
+            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
+                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-6"><i class="fa-solid fa-gears"></i></div>
+                    <h3 class="text-xl font-bold text-slate-100 mb-4">Infrastructure as Code</h3>
+                    <p class="text-slate-400 text-sm">Otomatisasi instalasi untuk meniadakan error konfigurasi manual.</p>
                 </div>
             </div>
 
-            <div class="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 hover:border-emerald-500/20 hover:bg-slate-900/30 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6">
-                    <i class="fa-solid fa-sliders"></i>
-                </div>
-                <h3 class="text-xl font-display font-bold text-slate-100 mb-4">OS & Telemetry Logs</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Pencatatan logs menyeluruh dan visualisasi kinerja cluster guna mengantisipasi kegagalan sistem sebelum pengguna merasakannya.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Rocky Linux / Ubuntu</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Prometheus</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Grafana</span>
-                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md font-mono text-xs text-slate-300">Nginx / HAProxy</span>
+            <div class="w-full flex-shrink-0 px-4 md:w-1/3">
+                <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6"><i class="fa-solid fa-sliders"></i></div>
+                    <h3 class="text-xl font-bold text-slate-100 mb-4">OS & Telemetry</h3>
+                    <p class="text-slate-400 text-sm">Pencatatan logs menyeluruh untuk mengantisipasi kegagalan sistem.</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="flex justify-center mt-8 space-x-4">
+            <button @click="activeSlide = activeSlide === 1 ? 3 : activeSlide - 1" class="p-3 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button @click="activeSlide = activeSlide === 3 ? 1 : activeSlide + 1" class="p-3 rounded-full bg-slate-800 hover:bg-emerald-500 text-white transition">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
 
 <section id="projects" class="py-20 bg-slate-900/10 border-t border-slate-900">
         <div class="max-w-6xl mx-auto px-6">
