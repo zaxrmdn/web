@@ -1,4 +1,68 @@
 // ==========================================
+// GLOBAL STATE & CORE LOGIC (Maintenance & Audit)
+// ==========================================
+
+// Inisialisasi Alpine Global Store atau variabel pembantu jika diperlukan
+document.addEventListener('alpine:init', () => {
+    Alpine.data('mainData', () => ({
+        isMaintenance: false,
+        maintenanceProgress: 0,
+        progressInterval: null,
+        
+        toggleMaintenance() {
+            this.isMaintenance = !this.isMaintenance;
+            if (this.isMaintenance) {
+                this.maintenanceProgress = 0;
+                // Jalankan simulasi progress bar naik pelan-pelan
+                this.progressInterval = setInterval(() => {
+                    if (this.maintenanceProgress < 100) {
+                        this.maintenanceProgress += Math.floor(Math.random() * 8) + 2;
+                        if (this.maintenanceProgress > 100) this.maintenanceProgress = 100;
+                    } else {
+                        clearInterval(this.progressInterval);
+                    }
+                }, 400);
+            } else {
+                clearInterval(this.progressInterval);
+            }
+        },
+        restoreSystem() {
+            this.isMaintenance = false;
+            this.maintenanceProgress = 0;
+            clearInterval(this.progressInterval);
+        }
+    }));
+});
+
+// NATIVE JAVASCRIPT: LIVE AUDIT TRAIL FOOTER
+document.addEventListener("DOMContentLoaded", function() {
+    const auditLogs = [
+        "INFO: Cronjob backup database completed successfully (0.042s).",
+        "WARN: Rate-limit connection threshold reached from subnet 182.16.x.x.",
+        "SUCCESS: SSL Renewal validation via Let's Encrypt CA accomplished.",
+        "INFO: Clearing system temporary cache logs via automated daemon.",
+        "SUCCESS: Deployment pipeline trigger #402 status [SUCCESS].",
+        "INFO: Resource optimization task executed. RAM freed: 242MB.",
+        "WARN: Brute-force attempt blocked on SSH service from port 22.",
+        "INFO: Synchronizing system clock NTP server with time.google.com."
+    ];
+
+    const logTextElement = document.getElementById("live-audit-text");
+    if (logTextElement) {
+        setInterval(() => {
+            // Ambil waktu sekarang secara dinamis
+            const now = new Date();
+            const timestamp = now.toISOString().replace('T', ' ').substring(0, 19);
+            
+            // Pilih log acak dari array
+            const randomLog = auditLogs[Math.floor(Math.random() * auditLogs.length)];
+            
+            // Masukkan teks gabungan ke footer
+            logTextElement.innerHTML = `[${timestamp}] ${randomLog}`;
+        }, 4500); // Berganti otomatis setiap 4.5 detik
+    }
+});
+// ==========================================
 // ALPINE.JS COMPONENTS LOGIC (Terminal & Monitor)
 // ==========================================
 
