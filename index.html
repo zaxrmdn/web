@@ -242,57 +242,146 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20 bg-slate-900/10 border-t border-slate-900">
+<section id="projects" class="py-20 bg-slate-900/10 border-t border-slate-900">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-16">
                 <span class="text-emerald-400 font-mono text-xs tracking-wider uppercase">// Deployment Catalog</span>
                 <h2 class="text-3xl font-display font-bold text-slate-100 mt-2">Arsitektur & Otomatisasi Terkini</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="px-2.5 py-1 bg-cyan-950/40 text-cyan-400 border border-cyan-900/50 rounded text-xs font-mono">Setup Produksi</span>
-                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
-                            <i class="fa-solid fa-network-wired"></i>
+            <!-- Grid diubah menjadi 3 kolom pada layar besar (lg:grid-cols-3) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1: High Availability Kubernetes -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 bg-cyan-950/40 text-cyan-400 border border-cyan-900/50 rounded text-xs font-mono">Setup Produksi</span>
+                            <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
                         </div>
+                        <h3 class="text-xl font-display font-bold text-slate-100 mb-2">High Availability K8s Cluster on AWS</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Membangun infrastruktur Kubernetes multi-node dengan sistem auto-scaling, load balancing via HAProxy, serta integrasi pemantauan Prometheus untuk mendukung layanan microservice e-commerce klien.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">High Availability K8s Cluster on AWS</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Membangun infrastruktur Kubernetes multi-node dengan sistem auto-scaling, load balancing via HAProxy, serta integrasi pemantauan Prometheus untuk mendukung layanan microservice e-commerce klien.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">EKS</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Terraform</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Helm</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Grafana</span>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">EKS</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Terraform</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Helm</span>
+                        </div>
+                        <a href="https://github.com/zaxrmdn/ha-k8s-aws" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                            cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
                     </div>
-                    <a href="https://github.com/zaxrmdn/ha-k8s-aws" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
-                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
-                    </a>
                 </div>
 
-                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="px-2.5 py-1 bg-emerald-950/40 text-emerald-400 border border-emerald-900/50 rounded text-xs font-mono">Otomatisasi Script</span>
-                        <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
-                            <i class="fa-solid fa-shield-halved"></i>
+                <!-- Project Card 2: Ansible Server Hardening -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 bg-emerald-950/40 text-emerald-400 border border-emerald-900/50 rounded text-xs font-mono">Otomatisasi Script</span>
+                            <div class="text-slate-500 group-hover:text-emerald-400 transition-colors text-lg">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
                         </div>
+                        <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Automated Server Hardening Script</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Playbook Ansible untuk melakukan pengamanan (hardening) server Linux baru sesuai standar CIS Benchmark. Melakukan konfigurasi SSH yang aman, setup UFW Firewall otomatis, dan instalasi Fail2Ban.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Automated Server Hardening Script</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Playbook Ansible untuk melakukan pengamanan (hardening) server Linux baru sesuai standar CIS Benchmark. Melakukan konfigurasi SSH yang aman, setup UFW Firewall otomatis, dan instalasi Fail2Ban.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ansible</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ubuntu Server</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Bash Scripting</span>
-                        <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">UFW</span>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ansible</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Ubuntu</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">UFW</span>
+                        </div>
+                        <a href="https://github.com/zaxrmdn/ansible-hardening" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                            cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
                     </div>
-                    <a href="https://github.com/zaxrmdn/ansible-hardening" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
-                        cat repo.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
-                    </a>
                 </div>
+
+                <!-- BARU - Project Card 3: Windows Server Setup -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 bg-blue-950/40 text-blue-400 border border-blue-900/50 rounded text-xs font-mono">Sysadmin OS</span>
+                            <div class="text-slate-500 group-hover:text-blue-400 transition-colors text-lg">
+                                <i class="fa-brands fa-windows"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Enterprise Windows Server & AD DS Deployment</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Konfigurasi Windows Server untuk manajemen pengguna terpusat menggunakan Active Directory Domain Services (AD DS), penerapan Group Policy Object (GPO) untuk standarisasi keamanan, serta setup File Server dengan NTFS Permissions.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">WinServer</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">ActiveDirectory</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">GPO</span>
+                        </div>
+                        <a href="https://github.com/zaxrmdn/windows-server-setup" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                            cat active-directory.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BARU - Project Card 4: Azure Infra Management -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 bg-sky-950/40 text-sky-400 border border-sky-900/50 rounded text-xs font-mono">Cloud Hybrid</span>
+                            <div class="text-slate-500 group-hover:text-sky-400 transition-colors text-lg">
+                                <i class="fa-solid fa-cloud-sun"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Azure Cloud Infrastructure Automation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Desain dan pengelolaan infrastruktur berskala enterprise di Microsoft Azure menggunakan prinsip Infrastructure as Code (IaC). Meliputi setup Azure VNet, Load Balancer, Virtual Machine Scale Sets, dan optimasi biaya *Azure Cost Management*.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Azure</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Terraform</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">AzureDevOps</span>
+                        </div>
+                        <a href="https://github.com/zaxrmdn/azure-infra-manage" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                            cat azure-infra.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BARU - Project Card 5: Centralized Monitoring -->
+                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 group hover:border-emerald-500/20 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-2.5 py-1 bg-purple-950/40 text-purple-400 border border-purple-900/50 rounded text-xs font-mono">Observability</span>
+                            <div class="text-slate-500 group-hover:text-purple-400 transition-colors text-lg">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-slate-100 mb-2">Centralized Monitoring & Log Analytics</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Implementasi stack observabilitas terpusat untuk memantau kesehatan puluhan *server node*. Mengintegrasikan metrik sistem, pengumpulan log terdistribusi, dan sistem peringatan instan (Alertmanager) yang terhubung ke Telegram/Slack.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Grafana Loki</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Prometheus</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-slate-400 rounded text-xs font-mono">Promtail</span>
+                        </div>
+                        <a href="https://github.com/zaxrmdn/centralized-monitoring" target="_blank" class="inline-flex items-center text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono">
+                            cat telemetry.md <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -329,6 +418,9 @@
                 </a>
                 <a href="https://www.instagram.com/zaxrmdn/" target="_blank" class="px-6 py-3 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-pink-500 font-mono font-bold text-sm rounded-lg transition inline-flex items-center gap-2">
                     <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.linkedin.com/in/zakaria-ramadan" target="_blank" class="px-6 py-3 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-pink-500 font-mono font-bold text-sm rounded-lg transition inline-flex items-center gap-2">
+                    <i class="fa-brands fa-linkedin"></i> Instagram
                 </a>
             </div>
         </div>
