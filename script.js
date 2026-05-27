@@ -118,10 +118,10 @@ function terminalHandler() {
                     output = `Daftar perintah yang tersedia:\n  <span class="text-emerald-400">about</span>    - Mengenal profil ringkas saya\n  <span class="text-emerald-400">skills</span>   - Menampilkan rack keahlian teknis\n  <span class="text-emerald-400">clear</span>    - Membersihkan layar konsol`;
                     break;
                 case 'about':
-                    output = "Saya Zakaria Ramadan, seorang System Administrator & DevOps Engineer yang fokus merancang infrastruktur sistem dengan tingkat ketersediaan tinggi (High Availability) dan arsitektur cloud terotomatisasi.";
+                    output = "Saya Zakaria Ramadan, Berfokus pada Pengalaman Pengajaran & Sysadmin. Seorang System Administrator dan IT Trainer & Consultant dengan pengalaman lebih dari 3 tahun di ID-Networkers (IDN.ID). Memiliki keahlian mendalam dalam administrasi sistem Linux (Ubuntu & RHEL), Windows Server, VMware, DevOps, dan Microsoft Azure. Terbukti sukses menyampaikan materi training teknis, menyusun modul otomatisasi dan sistem (Ansible & Linux) , serta menyelesaikan masalah teknis (troubleshooting) secara real-time. ";
                     break;
                 case 'skills':
-                    output = "Core Stack:\n - OS: Ubuntu Server, RHEL, Rocky Linux\n - Cloud/Virt: AWS, Docker, Kubernetes, Proxmox\n - IaC/Automation: Terraform, Ansible, Bash Scripting\n - Telemetri: Prometheus, Grafana, Nginx Logs";
+                    output = "Core Stack:\n - 01. System Administration & OS: Ubuntu Server, RHEL, Rocky Linux\n - Cloud/Virt: AWS, Docker, Kubernetes, Proxmox\n - IaC/Automation: Terraform, Ansible, Bash Scripting\n - Telemetri: Prometheus, Grafana, Nginx Logs";
                     break;
                 case 'clear':
                     this.history = [];
